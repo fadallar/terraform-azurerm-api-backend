@@ -44,14 +44,14 @@ variable "resource_id" {
 
 variable "validate_certificate_chain" {
   description = "Flag indicating whether SSL certificate chain validation should be done when using self-signed certificates for the backend host."
-  type        = string
-  default     = null
+  type        = bool
+  default     = false
 }
 
 variable "validate_certificate_name" {
   description = "Flag indicating whether SSL certificate name validation should be done when using self-signed certificates for the backend host."
-  type        = string
-  default     = null
+  type        = bool
+  default     = false
 }
 
 variable "credentials_settings" {
@@ -61,12 +61,6 @@ variable "credentials_settings" {
 }
 
 variable "proxy_settings" {
-  description = ""
-  type        = map(string)
-  default     = null
-}
-
-variable "tls_settings" {
   description = ""
   type        = map(string)
   default     = null
