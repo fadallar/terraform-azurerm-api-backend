@@ -16,7 +16,7 @@ variable "api_management_name" {
 variable "protocol" {
   description = "The protocol used by the backend host. Possible values are http or soap."
   type        = string
-  default     = "Http"
+  default     = "http"
 }
 
 variable "url" {
@@ -53,7 +53,6 @@ variable "validate_certificate_name" {
   type        = string
   default     = null
 }
-
 
 variable "credentials_settings" {
   description = ""
