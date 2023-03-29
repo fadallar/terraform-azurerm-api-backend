@@ -15,9 +15,9 @@ resource "azurerm_api_management_backend" "this" {
         parameter = try(credentials.value.authorization_parameter, null)
         scheme    = try(credentials.value.authorization_scheme, null)
       }
-      certificate = try(credentials.value.certificate,null)
-      header      = try(credentials.value.header,null)
-      query       = try(credentials.value.query,null)
+      certificate = try(credentials.value.certificate, null)
+      header      = try(credentials.value.header, null)
+      query       = try(credentials.value.query, null)
     }
   }
 

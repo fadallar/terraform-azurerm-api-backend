@@ -4,6 +4,6 @@ output "id" {
 }
 
 output "name" {
-  description = "APIM backend Id"
+  description = "APIM backend Name"
   value       = azurerm_api_management_backend.this.name
 }

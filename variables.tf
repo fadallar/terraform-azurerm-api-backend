@@ -56,8 +56,14 @@ variable "validate_certificate_name" {
 
 variable "credentials_settings" {
   description = ""
-  type        = map(string)
-  default     = null
+  type = object({
+    authorization_parameter = optional(string),
+    authorization_scheme    = optional(string),
+    certificate             = optional(list(string)),
+    header                  = optional(map(string)),
+    query                   = optional(map(string))
+  })
+  default = null
 }
 
 variable "proxy_settings" {
