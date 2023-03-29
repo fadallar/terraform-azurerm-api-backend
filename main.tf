@@ -6,7 +6,7 @@ resource "azurerm_api_management_backend" "this" {
   url                 = var.url
   description         = var.description
   title               = var.title
-  resource_id         = var.resource_id
+  resource_id         = local.resource_id
 
   dynamic "credentials" {
     for_each = var.credentials_settings != null ? ["enabled"] : []
