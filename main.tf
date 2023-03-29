@@ -9,24 +9,25 @@ resource "azurerm_api_management_backend" "this" {
   resource_id         = local.resource_id
 
   dynamic "credentials" {
-    for_each = var.credentials_settings != null ? ["enabled"] : []
+    for_each = var.credentials_settings != null ? [var.credentials_settings] : []
     content {
       authorization {
-        parameter = try(each.value.authorization_parameter, null)
-        scheme    = try(each.value.authorization_scheme, null)
+        parameter = try(credentials.value.authorization_parameter, null)
+        scheme    = try(credentials.value.authorization_scheme, null)
       }
-      certificate = each.value.certificate
-      header      = each.value.header
-      query       = each.value.query
+      certificate = try(credentials.value.certificate,null)
+      header      = try(credentials.value.header,null)
+      query       = try(credentials.value.query,null)
     }
   }
 
   dynamic "proxy" {
-    for_each = var.proxy_settings != null ? ["enabled"] : []
+    for_each = var.proxy_settings != null ? [var.proxy_settings] : []
     content {
-      password = each.value.password
-      url      = each.value.url
-      username = each.value.username
+      password = proxy.value.password
+      url      = proxy.value.url
+      username = proxy.value.username
+
     }
   }
 
