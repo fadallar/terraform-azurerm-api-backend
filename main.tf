@@ -11,12 +11,9 @@ resource "azurerm_api_management_backend" "this" {
   dynamic "credentials" {
     for_each = var.credentials_settings != null ? ["enabled"] : []
     content {
-      dynamic "authorization" {
-        for_each = each.value.authorization_scheme != null ? ["enabled"] : []
-        content {
-          parameter = each.value.authorization_parameter
-          scheme    = each.value.authorization_scheme
-        }
+      authorization {
+        parameter = try(each.value.authorization_parameter, null)
+        scheme    = try(each.value.authorization_scheme, null)
       }
       certificate = each.value.certificate
       header      = each.value.header
