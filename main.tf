@@ -30,12 +30,9 @@ resource "azurerm_api_management_backend" "this" {
     }
   }
 
-  dynamic "tls" {
-    for_each = var.tls_settings != null ? ["enabled"] : []
-    content {
-      validate_certificate_chain = each.value.validate_certificate_chain
-      validate_certificate_name  = each.value.validate_certificate_name
-    }
+  tls {
+    validate_certificate_chain = var.validate_certificate_chain
+    validate_certificate_name  = var.validate_certificate_name
   }
 
 }
